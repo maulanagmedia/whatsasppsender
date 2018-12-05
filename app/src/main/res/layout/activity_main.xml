@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@color/color_background">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="19sp"
+                android:textColor="@color/color_title"
+                android:text="Detail Penerima"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:background="@drawable/bg_input"
+                android:padding="8dp"
+                android:hint="Nomor"
+                android:drawableLeft="@mipmap/ic_prefix_number"
+                android:id="@+id/edt_nomor"
+                android:textSize="14sp"
+                android:layout_marginTop="12dp"
+                android:inputType="phone"
+                android:imeOptions="actionNext"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="80dp"
+                android:background="@drawable/bg_input"
+                android:padding="8dp"
+                android:hint="Pesan"
+                android:id="@+id/edt_pesan"
+                android:textSize="14sp"
+                android:layout_marginTop="4dp"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:imeOptions="actionDone"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/btn_submit"
+                android:text="Kirim"
+                android:id="@+id/btn_send"
+                android:textColor="@color/color_white"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

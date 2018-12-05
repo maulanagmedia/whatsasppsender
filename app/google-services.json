@@ -1,0 +1,167 @@
+{
+  "project_info": {
+    "project_number": "1002992293702",
+    "firebase_url": "https://semaranggreatsale-5de45.firebaseio.com",
+    "project_id": "semaranggreatsale-5de45",
+    "storage_bucket": "semaranggreatsale-5de45.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1002992293702:android:2cb95ea5e4adde62",
+        "android_client_info": {
+          "package_name": "com.semardev.semaranggreatsale"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1002992293702-5bc0u39i5qco3fn090lo6erefsg0t8od.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.semardev.semaranggreatsale",
+            "certificate_hash": "3d09cfa036e0f47757e36b6a7894354713d5cd30"
+          }
+        },
+        {
+          "client_id": "1002992293702-4odgrf8q5j8q8oin8v17svcm1v5ov72g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIoSuv_wtAr-vLGmx6qaXOlBc48sXn8eQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1002992293702-4odgrf8q5j8q8oin8v17svcm1v5ov72g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1002992293702:android:5c9059c5b52fb18d",
+        "android_client_info": {
+          "package_name": "gmedia.net.id.semaranggreatsale"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1002992293702-9e9n3902uiroh5rbut9a0rroqqaeu1pm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "gmedia.net.id.semaranggreatsale",
+            "certificate_hash": "5a66fc22cb295c12a3ec9d6d364c6bfcb515387c"
+          }
+        },
+        {
+          "client_id": "1002992293702-ntknmjkenanf4qjgk95abcrgm27g6hco.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "gmedia.net.id.semaranggreatsale",
+            "certificate_hash": "9890be7d9d065588047943109718da188ce7d524"
+          }
+        },
+        {
+          "client_id": "1002992293702-ra79ogkav556sit4eb5iqic22eqgukvf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "gmedia.net.id.semaranggreatsale",
+            "certificate_hash": "e7a479a764ac60810d1d96a461bc77a2d22b7c4f"
+          }
+        },
+        {
+          "client_id": "1002992293702-snhrnt8hg2k3i0rqj4fesk46lpt67fmk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "gmedia.net.id.semaranggreatsale",
+            "certificate_hash": "3d09cfa036e0f47757e36b6a7894354713d5cd30"
+          }
+        },
+        {
+          "client_id": "1002992293702-4odgrf8q5j8q8oin8v17svcm1v5ov72g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIoSuv_wtAr-vLGmx6qaXOlBc48sXn8eQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1002992293702-4odgrf8q5j8q8oin8v17svcm1v5ov72g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1002992293702:android:89aaee3e0a0182ee",
+        "android_client_info": {
+          "package_name": "id.net.gmedia.whatsappsender"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1002992293702-4e2dnh4raumuqqofhtecanldr2qfobkm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.net.gmedia.whatsappsender",
+            "certificate_hash": "c539c8bcdd7972212f0aaaf81148bdd15b4e249c"
+          }
+        },
+        {
+          "client_id": "1002992293702-4odgrf8q5j8q8oin8v17svcm1v5ov72g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIoSuv_wtAr-vLGmx6qaXOlBc48sXn8eQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1002992293702-4odgrf8q5j8q8oin8v17svcm1v5ov72g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

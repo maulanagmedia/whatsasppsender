@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">WhatsappSender</string>
+    <string name="whatsapp_suffix"> </string>
+    <string name="whatsapp_suffix1">\nPesan ini dikirim dari GmediaAPI for Whatsapp</string>
+</resources>
