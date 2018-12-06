@@ -3,8 +3,6 @@ package id.net.gmedia.whatsappsender;
 import android.accessibilityservice.AccessibilityService;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,20 +14,19 @@ import android.widget.EditText;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 
-import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import id.net.gmedia.whatsappsender.NotificationUtils.InitFirebaseSetting;
+import id.net.gmedia.whatsappsender.Utils.MessageUtils;
+import id.net.gmedia.whatsappsender.Utils.TimerService;
+import id.net.gmedia.whatsappsender.Utils.WhatsappAccessibilityService;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Context context;
+    public static Context context;
     private EditText edtNomor, edtPesan;
     private Button btnSend;
-    public static List<PesanModel> listPesan = new ArrayList<>();
+    public static boolean isActive;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +34,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
+        if(MessageUtils.listPesan == null) MessageUtils.listPesan = new ArrayList<>();
         context = this;
+        isActive = true;
         InitFirebaseSetting.getFirebaseSetting(context);
-        String refreshToken = FirebaseInstanceId.getInstance().getToken();
+        MessageUtils.fcmToken = FirebaseInstanceId.getInstance().getToken();
         initUI();
         initEvent();
 
@@ -58,32 +57,14 @@ public class MainActivity extends AppCompatActivity {
             edtNomor.setText(nomor);
             edtPesan.setText(pesan);
 
-            listPesan.add(new PesanModel(nomor, pesan));
+            //listPesan.add(new PesanModel(nomor, pesan));
             //sendMessage(nomor, pesan);
         }
 
-        Timer timer = new Timer();
-        TimerTask t = new TimerTask() {
-            @Override
-            public void run() {
-
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        if(listPesan.size() > 0){
-
-                            String nomor = listPesan.get(0).getNomor();
-                            String pesan = listPesan.get(0).getPesan();
-                            sendMessage(nomor, pesan);
-                            listPesan.remove(0);
-                        }
-                    }
-                });
-            }
-        };
-
-        timer.scheduleAtFixedRate(t,1000,2000);    }
+        Intent i= new Intent(context, TimerService.class);
+        i.putExtra("data", "start");
+        context.startService(i);
+    }
 
     private void initUI() {
 
@@ -118,26 +99,9 @@ public class MainActivity extends AppCompatActivity {
                     edtPesan.setError(null);
                 }
 
-                sendMessage(edtNomor.getText().toString(), edtPesan.getText().toString());
+                MessageUtils.sendMessage(context, edtNomor.getText().toString(), edtPesan.getText().toString());
             }
         });
-    }
-
-    private void sendMessage(String number, String messange){
-
-        number = "+62" +number;
-        PackageManager packageManager = context.getPackageManager();
-        Intent i = new Intent(Intent.ACTION_VIEW);
-        try {
-            String url = "https://api.whatsapp.com/send?phone=" + number + "&text=" + URLEncoder.encode(messange, "UTF-8") + context.getResources().getString(R.string.whatsapp_suffix);
-            i.setPackage("com.whatsapp");
-            i.setData(Uri.parse(url));
-            if (i.resolveActivity(packageManager) != null) {
-                context.startActivity(i);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     private boolean isAccessibilityOn (Context context, Class<? extends AccessibilityService> clazz) {
@@ -164,5 +128,16 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return false;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        isActive = false;
+        super.onDestroy();
     }
 }

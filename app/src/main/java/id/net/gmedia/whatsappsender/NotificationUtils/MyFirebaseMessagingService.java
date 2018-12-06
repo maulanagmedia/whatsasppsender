@@ -87,7 +87,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
             int IconColor = getResources().getColor(R.color.color_notif);
 
-            MainActivity.listPesan.add(new PesanModel(extra.get("nomor"),extra.get("pesan")));
+            //MainActivity.listPesan.add(new PesanModel(extra.get("nomor"),extra.get("pesan")));
             /*intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);*/
 

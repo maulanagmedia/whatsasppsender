@@ -1,4 +1,4 @@
-package id.net.gmedia.whatsappsender;
+package id.net.gmedia.whatsappsender.Utils;
 
 import android.accessibilityservice.AccessibilityService;
 import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat;
@@ -7,6 +7,8 @@ import android.view.accessibility.AccessibilityNodeInfo;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import id.net.gmedia.whatsappsender.R;
 
 public class WhatsappAccessibilityService extends AccessibilityService {
 
@@ -28,7 +30,6 @@ public class WhatsappAccessibilityService extends AccessibilityService {
         }catch (Exception e){
             return;
         }
-
 
         // check if the whatsapp message EditText field is filled with text and ending with your suffix (explanation above)
         AccessibilityNodeInfoCompat messageField = messageNodeList.get (0);
