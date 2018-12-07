@@ -1,6 +1,7 @@
 package id.net.gmedia.whatsappsender.Utils;
 
 import android.accessibilityservice.AccessibilityService;
+import android.content.Intent;
 import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
@@ -62,6 +63,10 @@ public class WhatsappAccessibilityService extends AccessibilityService {
             Thread.sleep (500);  // same hack as above
         } catch (InterruptedException ignored) {}
         performGlobalAction (GLOBAL_ACTION_BACK);*/
+        Intent startMain = new Intent(Intent.ACTION_MAIN);
+        startMain.addCategory(Intent.CATEGORY_HOME);
+        startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(startMain);
     }
 
     @Override
