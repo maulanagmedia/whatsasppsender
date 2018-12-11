@@ -1,23 +1,37 @@
 package id.net.gmedia.whatsappsender;
 
 import android.accessibilityservice.AccessibilityService;
+import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.provider.Settings;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 import id.net.gmedia.whatsappsender.NotificationUtils.InitFirebaseSetting;
+import id.net.gmedia.whatsappsender.Utils.ApiVolley;
 import id.net.gmedia.whatsappsender.Utils.MessageUtils;
+import id.net.gmedia.whatsappsender.Utils.Model;
+import id.net.gmedia.whatsappsender.Utils.ServerURL;
 import id.net.gmedia.whatsappsender.Utils.TimerService;
 import id.net.gmedia.whatsappsender.Utils.WhatsappAccessibilityService;
 
@@ -47,6 +61,13 @@ public class MainActivity extends AppCompatActivity {
             context.startActivity (intent);
         }
 
+        if(!checkNotificationEnabled()){
+
+            Intent intent = new Intent(
+                    "android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
+            startActivity(intent);
+        }
+
         Bundle bundle = getIntent().getExtras();
 
         if(bundle != null){
@@ -64,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
         Intent i= new Intent(context, TimerService.class);
         i.putExtra("data", "start");
         context.startService(i);
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(onNotice, new IntentFilter("Msg"));
     }
 
     private void initUI() {
@@ -128,6 +151,89 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return false;
+    }
+
+    private BroadcastReceiver onNotice= new BroadcastReceiver() {
+
+        private String TAG = "MAIN";
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // String pack = intent.getStringExtra("package");
+            String title = intent.getStringExtra("title");
+            String text = intent.getStringExtra("text");
+            //int id = intent.getIntExtra("icon",0);
+
+            Context remotePackageContext = null;
+            try {
+//                remotePackageContext = getApplicationContext().createPackageContext(pack, 0);
+//                Drawable icon = remotePackageContext.getResources().getDrawable(id);
+//                if(icon !=null) {
+//                    ((ImageView) findViewById(R.id.imageView)).setBackground(icon);
+//                }
+                byte[] byteArray =intent.getByteArrayExtra("icon");
+                Bitmap bmp = null;
+                if(byteArray !=null) {
+                    bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+                }
+
+                Model model = new Model();
+                model.setName(title +" " +text);
+                model.setImage(bmp);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    };
+
+    //check notification access setting is enabled or not
+    public boolean checkNotificationEnabled() {
+        try{
+            if(Settings.Secure.getString(getContentResolver(),
+                    "enabled_notification_listeners").contains(context.getPackageName()))
+            {
+                return true;
+            } else {
+                return false;
+            }
+
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static void wakeUpScreen(){
+
+        try {
+
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
+                final Context finalContext = context;
+
+                ((Activity)context).runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        ((Activity) finalContext).setTurnScreenOn(true);
+                    }
+                });
+
+            } else {
+
+                final Context finalContext1 = context;
+                ((Activity)context).runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        final Window window = ((Activity) finalContext1).getWindow();
+                        window.addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+                    }
+                });
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override

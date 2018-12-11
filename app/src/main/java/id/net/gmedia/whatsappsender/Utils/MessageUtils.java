@@ -1,13 +1,18 @@
 package id.net.gmedia.whatsappsender.Utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
+import android.view.Window;
+import android.view.WindowManager;
 
 import java.net.URLEncoder;
 import java.util.List;
 
+import id.net.gmedia.whatsappsender.MainActivity;
 import id.net.gmedia.whatsappsender.PesanModel;
 import id.net.gmedia.whatsappsender.R;
 
@@ -19,6 +24,8 @@ public class MessageUtils {
     public static String fcmToken = "";
 
     public static void sendMessage(Context context, String number, String messange){
+
+        MainActivity.wakeUpScreen();
 
         number = "+62" +number;
         PackageManager packageManager = context.getPackageManager();
