@@ -26,7 +26,7 @@ public class TimerService extends Service {
     private static Timer timerServer = new Timer();
     private Context context;
     private String TAG = "TimerService";
-    private int timerGetServer = 5 * 1000; // 5 detik
+    private int timerGetServer = 15 * 1000; // 5 detik
 
     public IBinder onBind(Intent arg0)
     {
@@ -48,7 +48,7 @@ public class TimerService extends Service {
 
     private void startService()
     {
-        timer.scheduleAtFixedRate(new mainTask(), 0, 2000);
+        timer.scheduleAtFixedRate(new mainTask(), 0, 10000);
         timerServer.scheduleAtFixedRate(new serverTask(), 0, timerGetServer);
     }
 

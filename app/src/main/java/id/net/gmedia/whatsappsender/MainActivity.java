@@ -207,7 +207,6 @@ public class MainActivity extends AppCompatActivity {
 
         try {
 
-
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
                 final Context finalContext = context;
 
